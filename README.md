@@ -30,24 +30,24 @@ curl http://localhost:8888
 
 # Explanation
 
-## Vagrantfile.proxy
+### Vagrantfile.proxy
 Vagrant runs the Docker server inside a VM because it needs to run on 
 Linux kernel. We reference this file from Vagrantfile to ensure that 
 Docker is using Vagrant's VM (VirtualBox) as opposed to boot2docker, 
 which kind of sucks when you're dealing with ports. I use ubuntu 12.04 
 for this.
 
-## Vagrantfile
+### Vagrantfile
 This is the main Vagrantfile, which runs the Docker container. Notice
 that we tell the provider (Docker) to run its server inside the VM 
 specified by Vagrantfile.proxy.
 
-## Dockerfile
+### Dockerfile
 This is where the Docker magic happens. There's not much going on here--
 Ubuntu updates its repos, installs Node.js, creates a public www directory,
 moves out Node.js app to it, then runs it.
 
-## app.js
+### app.js
 This is the super simple Node.js server. It responds to everything with 
 'Hello World'. No ip is specified, so it defaults to '0.0.0.0'. This is
 what we want. '127.0.0.1' does not work because of some internal bullshit.
