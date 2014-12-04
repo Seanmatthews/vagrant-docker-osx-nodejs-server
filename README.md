@@ -30,6 +30,18 @@ curl http://localhost:8888
 
 # Explanation
 
+What's happening in this whole setup? Well, the Vagrantfile specifies Docker
+as the provider for the environment it's going to setup. That is, the main 
+operating environment is not a VM, but rather a Docker container that pulls
+an image for its OS. All of this is specified in the Dockerfile referenced 
+from Vagrantfile. Vagrantfile also references Vagrantfile.proxy. This file
+specifies the configuration of the VM in which the Docker server will run. 
+The Docker server must be run on top of a Linux kernel. By default (without
+the Vagrantfile.proxy), the Docker server will automatically run in a
+boot2docker VM. Here, I have opted to use Vagrant's default VM (VirtualBox)
+for that Docker server. My only reasons-- to keep everything docker, and
+because boot2docker is tough to work with in regards to IP forwarding.
+
 ### Vagrantfile.proxy
 Vagrant runs the Docker server inside a VM because it needs to run on 
 Linux kernel. We reference this file from Vagrantfile to ensure that 
